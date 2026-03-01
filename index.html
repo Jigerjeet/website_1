@@ -153,35 +153,62 @@
     #header {
       background: #fff;
       border-bottom: 1px solid var(--line);
-      padding: 16px 28px;
+      padding: 12px 16px;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
+      gap: 10px;
       position: sticky;
       top: 0;
       z-index: 100;
       box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      width: 100%;
+      overflow: hidden;
     }
 
     .logo {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: var(--brand);
       letter-spacing: 0.03em;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
+
+    #nav { flex-shrink: 0; }
 
     #nav .icons {
       display: flex;
-      gap: 18px;
+      flex-wrap: nowrap;
+      gap: 0;
       list-style: none;
+      align-items: center;
     }
-    #nav .icons a {
+
+    #nav .icons li a {
       color: var(--muted);
-      font-size: 1.1rem;
+      font-size: 1rem;
       transition: transform 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      font-weight: 600;
+      font-size: 0.82rem;
     }
-    #nav .icons a:hover { color: var(--brand); transform: translateY(-2px); }
+    #nav .icons li a i { font-size: 1rem; }
+    #nav .icons li a:hover { color: var(--brand); background: #fff5ee; transform: translateY(-1px); }
+
+    /* On very small screens, hide text labels and show only icons */
+    @media (max-width: 420px) {
+      .logo { font-size: 0.95rem; }
+      #nav .icons li a { padding: 6px 8px; font-size: 0; gap: 0; }
+      #nav .icons li a i { font-size: 1.15rem; }
+    }
 
     /* ── Main content ──────────────────────────── */
     #main { max-width: 1100px; margin: 0 auto; padding: 50px 24px; }
@@ -215,8 +242,9 @@
     .post.featured .major p { color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
     .post.featured img {
       width: 100%;
-      height: 380px;
+      height: 340px;
       object-fit: cover;
+      object-position: center center;
       border-radius: 0 0 14px 14px;
     }
 
@@ -249,9 +277,13 @@
       width: 100%;
       height: 180px;
       object-fit: cover;
+      object-position: center center;
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       margin-bottom: 14px;
+    }
+    @media (max-width: 600px) {
+      .posts article img { height: auto; max-height: 200px; object-fit: contain; background: #f7f0e8; }
     }
 
     .posts article p { color: var(--muted); font-size: 0.93rem; line-height: 1.65; }
@@ -409,7 +441,8 @@
       .review-badge { font-size: 0.82rem; padding: 6px 12px; }
       .whatsapp-button { bottom: 14px; right: 14px; padding: 10px 16px; font-size: 0.88rem; }
       #footer { padding: 36px 20px 24px; }
-      .post.featured img { height: 220px; }
+      .post.featured .major { padding: 20px 16px 8px; }
+      #main { padding: 30px 14px; }
     }
   </style>
 </head>
@@ -439,9 +472,9 @@
       <a href="#" class="logo">Jeevan Car Bazaar</a>
       <nav id="nav">
         <ul class="icons">
-          <li><a href="https://www.facebook.com/share/1BLaCQXGc8/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="icon brands fab fa-facebook-f" title="Facebook"><span class="label">Facebook</span></a></li>
-          <li><a href="https://www.instagram.com/jeevan_car_bazar_assandh?igsh=M3g2d3BsZTN0aGp5" target="_blank" rel="noopener noreferrer" class="icon brands fab fa-instagram" title="Instagram"><span class="label">Instagram</span></a></li>
-          <li><a href="https://wa.me/919518577000" target="_blank" rel="noopener noreferrer" class="icon brands fab fa-whatsapp" title="WhatsApp"><span class="label">WhatsApp</span></a></li>
+          <li><a href="https://www.facebook.com/share/1BLaCQXGc8/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+          <li><a href="https://www.instagram.com/jeevan_car_bazar_assandh?igsh=M3g2d3BsZTN0aGp5" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i> Instagram</a></li>
+          <li><a href="https://wa.me/919518577000" target="_blank" rel="noopener noreferrer" title="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
         </ul>
       </nav>
     </header>
@@ -541,7 +574,7 @@
         </section>
         <section>
           <h3>Email</h3>
-          <p><a href="mailto:jeevancarbazaarasd@gmail.com">📧 jeevancarbazaarasd@gmail.com</a></p>
+          <p><a href="/cdn-cgi/l/email-protection#6309060615020d00021101021902021102100723040e020a0f4d000c0e">📧 <span class="__cf_email__" data-cfemail="214b444457404f42405343405b40405340524561464c40484d0f424e4c">[email&#160;protected]</span></a></p>
         </section>
         <section>
           <h3>Social</h3>
@@ -564,7 +597,7 @@
   </div><!-- /#wrapper -->
 
   <!-- ── Scripts (pure JS, no jQuery or external libs needed) ── -->
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Dynamic date
     const dateNode = document.getElementById("currentDate");
     if (dateNode) {
